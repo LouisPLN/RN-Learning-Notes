@@ -11,11 +11,9 @@
       "@services": ["./src/services"],
       "@utils": ["./src/utils"],
       "@routes": ["./src/routes"],
-      // "@interfaces": ["./src/interfaces"]
-      // "@routes": ["./src/routes"],
-      // "@screens": ["./src/screens"],
+      "@interfaces": ["./src/interfaces"]
       // "@stores": ["./src/stores"],
       // "@styles": ["./src/styles"]
-    },
+    }
   }
 }
