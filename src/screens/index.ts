@@ -1,5 +1,5 @@
-import NewsScreen from "./News";
-import UserNoteScreen from "./UserNote";
-import NoteScreen  from "./Note"
+import HomeScreen from "./HomeScreen";
+import MyNoteScreen from "./MyNoteScreen";
+import NewNoteScreen  from "./NewNoteScreen"
 
-export {NewsScreen, UserNoteScreen, NoteScreen};
+export {HomeScreen, MyNoteScreen, NewNoteScreen};
