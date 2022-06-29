@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // components
-import { HomeScreen, DetailScreen } from "../screens";
+import { HomeScreen, DetailScreen } from "@screens";
 
 const Routes = () => {
   const Stack = createNativeStackNavigator();
