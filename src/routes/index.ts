@@ -1,4 +1,4 @@
-import StackRoute from "./StackRoute";
+import NoteStack from "./NoteStack";
 import TabRoute from "./TabRoute";
 
-export {StackRoute, TabRoute}
+export {TabRoute, NoteStack}
