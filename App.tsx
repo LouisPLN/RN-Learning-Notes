@@ -16,6 +16,7 @@ import {
   getAllMyNotes,
   getAllTags,
   getStoredTags,
+  getMyStoredUserInfo,
 } from "./src/services/noteApi";
 import { INote } from "utils/interfaces/note";
 
@@ -46,6 +47,9 @@ export default function App() {
     setAllMyNotes(myNotes);
     const tags = await getStoredTags();
     setAllTags(tags);
+    const userInfo = await getMyStoredUserInfo();
+    setUserName(userInfo);
+    if (userInfo.length !== 0) setHideScreen(false);
   };
 
   useEffect(() => {

@@ -85,6 +85,13 @@ const getStoredTags = () => {
   });
 };
 
+const getMyStoredUserInfo = () => {
+  return AsyncStorage.getItem("@UserInfo").then((data: string | null) => {
+    if (!data) return [];
+    return JSON.parse(data);
+  });
+};
+
 /** Post Note"
  * POST /note {title,text,tags,anonym}
  * {
@@ -155,6 +162,7 @@ export {
   getMyStoredNotes,
   getStoredTags,
   getAllTags,
+  getMyStoredUserInfo,
 };
 
 // const getNotes = async () => {

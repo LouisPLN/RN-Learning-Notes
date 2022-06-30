@@ -1,12 +1,22 @@
 import { View, Text, SafeAreaView, ScrollView, TextInput } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // components
 import useStyles from "../utils/DefaultStyles";
 import Button from "../components/Button";
+import { LoginContext } from "../utils/context";
+import { handleError } from "utils/axios";
 
 const LoginScreen = ({ setHideScreen }: { setHideScreen: any }) => {
   const styles = useStyles();
+  const { userName, setUserName } = useContext(LoginContext);
+
+  const handlePress = async () => {
+    const value = JSON.stringify(userName);
+    await AsyncStorage.setItem("@UserInfo", value);
+    setHideScreen(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -34,8 +44,9 @@ const LoginScreen = ({ setHideScreen }: { setHideScreen: any }) => {
           style={styles.inputLogin}
           placeholder="Saisissez un pseudo"
           placeholderTextColor="#909090"
+          onChangeText={(text: string) => setUserName(text)}
         />
-        <Button onPress={() => setHideScreen(false)}>Continuer</Button>
+        <Button onPress={handlePress}>Continuer</Button>
       </ScrollView>
     </View>
   );
