@@ -39,6 +39,25 @@ const useStyles = () => {
       color: "#fff",
     },
 
+    button: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+      width: '100%',
+      height: 60,
+      marginTop: 5,
+      borderRadius: 10,
+      backgroundColor: '#EF2F88',
+    },
+
+    textButton: {
+      fontSize: 16,
+      color: '#fff',
+    },
+
+       // ALL NOTES SCREEN
+
     notesContainer: {
       display: "flex",
       flexDirection: "column",
@@ -115,6 +134,40 @@ const useStyles = () => {
       fontSize: 10,
       fontStyle: 'italic',
       color: "#fff",
+    },
+
+    // NEW NOTE SCREEN
+
+    createNoteContainer: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      width: '100%',
+      paddingTop: 20,
+      paddingBottom: 100,
+    },
+
+    input: {
+      width: '100%',
+      height: 60,
+      paddingHorizontal: 14,
+      marginVertical: 5,
+      borderRadius: 5,
+      color: '#fff',
+      backgroundColor: '#505050',
+    },
+
+    inputText: {
+      width: '100%',
+      height: 130,
+      paddingHorizontal: 14,
+      paddingTop: 18,
+      paddingBottom: 18,
+      marginVertical: 5,
+      borderRadius: 5,
+      color: '#fff',
+      backgroundColor: '#505050',
     }
   });
 
