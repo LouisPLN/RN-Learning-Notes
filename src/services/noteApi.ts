@@ -48,7 +48,7 @@ const getAllNotesByAuthor = async () => {
   try {
     const { data } = await api.get("/note");
     const result = data.filter(
-      (note: Partial<INote>) => note.author === "maxime"
+      (note: Partial<INote>) => note.author === "louis"
     );
     const jsonValue = JSON.stringify(result);
     await AsyncStorage.setItem("@AllMyNotes", jsonValue);
@@ -70,11 +70,13 @@ const getAllNotesByAuthor = async () => {
   }
  */
 const postNote = async (_body: Partial<INote>) => {
+  console.log("_body:", _body);
   try {
     const { data } = await api.post("/note", _body);
+    console.log("data:", data);
     return data;
   } catch (error) {
-    handleError(error);
+    console.warn(error);
     return null;
   }
 };

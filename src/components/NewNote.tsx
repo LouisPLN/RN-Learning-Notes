@@ -1,34 +1,99 @@
-import { View, TextInput, ScrollView } from "react-native";
+import { View, Text, TextInput, ScrollView } from "react-native";
 import React from "react";
+import { Formik, ErrorMessage } from "formik";
+import * as yup from "yup";
 
 //components
 import Button from "./Button";
 
 // style
 import useStyles from "../utils/DefaultStyles";
+import { INote } from "utils/interfaces/note";
+import { postNote } from "../services/noteApi";
 
 const NewNote = () => {
   const styles = useStyles();
 
+  const noteValidationSchema = yup.object().shape({
+    title: yup.string().required("Un titre est requise"),
+    text: yup.string().required("Un text est requise"),
+  });
+
+  const sendData = async (body: any) => {
+    const tagsArray = body.tags.split(" ");
+    const data = {
+      title: body.title,
+      text: body.text,
+      author: "louis",
+      anonym: true,
+      tags: tagsArray,
+    };
+    postNote(data);
+  };
+
   return (
     <View style={styles.createNoteContainer}>
-      <TextInput
-        style={styles.input}
-        placeholder="Titre de votre note"
-        placeholderTextColor="#909090"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Mots clés de votre note"
-        placeholderTextColor="#909090"
-      />
-      <TextInput
-        style={styles.inputText}
-        multiline={true}
-        placeholder="Rédiger ma note"
-        placeholderTextColor="#909090"
-      />
-      <Button>Créer ma note</Button>
+      <Formik
+        validationSchema={noteValidationSchema}
+        initialValues={{ title: "", tags: "", text: "" }}
+        onSubmit={(body: any) => sendData(body)}
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+          isValid,
+        }) => (
+          <>
+            <TextInput
+              value={values.title}
+              onChangeText={handleChange("title")}
+              onBlur={handleBlur("title")}
+              style={styles.input}
+              placeholder="Titre de votre note"
+              placeholderTextColor="#909090"
+            />
+            {touched.title && errors.title && (
+              <Text style={{ fontSize: 12, color: "#FF0000" }}>
+                {errors.title}
+              </Text>
+            )}
+            <TextInput
+              value={values.tags}
+              onChangeText={handleChange("tags")}
+              onBlur={handleBlur("tags")}
+              style={styles.input}
+              placeholder="Mots clés de votre note"
+              placeholderTextColor="#909090"
+            />
+            {touched.tags && errors.tags && (
+              <Text style={{ fontSize: 12, color: "#FF0000" }}>
+                {errors.tags}
+              </Text>
+            )}
+            <TextInput
+              value={values.text}
+              onChangeText={handleChange("text")}
+              onBlur={handleBlur("text")}
+              style={styles.inputText}
+              multiline={true}
+              placeholder="Rédiger ma note"
+              placeholderTextColor="#909090"
+            />
+            {touched.text && errors.text && (
+              <Text style={{ fontSize: 12, color: "#FF0000" }}>
+                {errors.text}
+              </Text>
+            )}
+            <Button onPress={handleSubmit} disabled={!isValid}>
+              Créer ma note
+            </Button>
+          </>
+        )}
+      </Formik>
     </View>
   );
 };

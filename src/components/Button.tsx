@@ -7,14 +7,20 @@ import useStyles from "../utils/DefaultStyles";
 const Button = ({
   children,
   onPress,
+  disabled,
 }: {
   children: React.ReactNode;
   onPress: () => void;
+  disabled?: boolean;
 }) => {
   const styles = useStyles();
 
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      disabled={disabled}
+      style={styles.button}
+      onPress={onPress}
+    >
       <Text style={styles.textButton}>{children}</Text>
     </TouchableOpacity>
   );
