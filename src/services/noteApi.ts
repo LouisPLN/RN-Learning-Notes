@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api, handleError } from "@utils/axios";
-import { INote } from "@utils/interfaces/note";
+import { api, handleError } from "../utils/axios";
+import { INote } from "../utils/interfaces/note";
 
 /** Get All Notes
  * GET /note
