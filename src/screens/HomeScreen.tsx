@@ -6,10 +6,14 @@ import useStyles from "../utils/DefaultStyles";
 import Notes from "../components/Notes";
 import { getAllNotes, getStoredNotes } from "../services/noteApi";
 import { INote } from "utils/interfaces/note";
+import DetailsScreen from "./DetailsScreen";
 
 const HomeScreen = () => {
   const styles = useStyles();
   const [notesList, setNotesList] = useState([] as INote[]);
+  const [currentNote, setCurrentNote] = useState({} as INote);
+
+  const [hideScreen, setHideScreen] = useState(false);
 
   const getData = async () => {
     const data = await getAllNotes();
@@ -36,13 +40,29 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.all}>
       <View style={styles.container}>
         <View style={styles.parent}>
-          <Text style={styles.title}>📌 Les notes partagés</Text>
+          {!hideScreen ? (
+            <Text style={styles.title}>📌 Les notes partagés</Text>
+          ) : (
+            <Text style={styles.title}>🔍 Détails</Text>
+          )}
         </View>
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
-          <Notes notesList={notesList} />
+          {!hideScreen ? (
+            <Notes
+              setCurrentNote={setCurrentNote}
+              notesList={notesList}
+              setHideScreen={setHideScreen}
+            />
+          ) : (
+            <DetailsScreen
+              note={currentNote}
+              setCurrentNote={setCurrentNote}
+              setHideScreen={setHideScreen}
+            />
+          )}
         </ScrollView>
       </View>
     </SafeAreaView>

@@ -1,6 +1,5 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 
 // styles
 import useStyles from "../utils/DefaultStyles";
@@ -8,13 +7,26 @@ import useStyles from "../utils/DefaultStyles";
 // services
 import { getAllNotes } from "../services/noteApi";
 
+import Detail from "./Detail";
+
 // utils
 import { getDateFormated } from "../utils/GetFormatDate";
 
 // interface
 import { INote } from "utils/interfaces/note";
 
-const Notes = ({ notesList }: { notesList: INote[] }) => {
+// screen
+import DetailsScreen from "../screens/DetailsScreen";
+
+const Notes = ({
+  notesList,
+  setHideScreen,
+  setCurrentNote,
+}: {
+  notesList: INote[];
+  setHideScreen: any;
+  setCurrentNote: any;
+}) => {
   const styles = useStyles();
 
   return (
@@ -24,11 +36,15 @@ const Notes = ({ notesList }: { notesList: INote[] }) => {
           <View key={index} style={styles.note}>
             <View style={styles.borderColor}></View>
             <View style={styles.content}>
-              <Text style={styles.noteTitle}>{note.title}</Text>
+              <View style={styles.parentDetail}>
+                <Text style={styles.noteTitle}>{note.title}</Text>
+                <Detail
+                  currentNote={note}
+                  setCurrentNote={setCurrentNote}
+                  setHideScreen={setHideScreen}
+                />
+              </View>
               <View style={styles.hr}></View>
-              {/* <Text key={index} style={styles.noteTags}>
-                      #{note?.tags}
-                    </Text> */}
               <View style={styles.tagsParent}>
                 {note?.tags?.map((tag: string, index: React.Key) => {
                   return (
