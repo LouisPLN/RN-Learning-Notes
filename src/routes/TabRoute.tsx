@@ -22,7 +22,7 @@ const TabRoute = () => {
           right: 20,
           elevation: 0,
           backgroundColor: "#fff",
-          borderRadius: 15,
+          borderRadius: 10,
           height: 70,
         },
       }}
