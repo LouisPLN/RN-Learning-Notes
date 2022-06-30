@@ -10,19 +10,16 @@ import { getAllNotes } from "../services/noteApi";
 
 // utils
 import { getDateFormated } from "../utils/GetFormatDate";
-import { useRequestNotes } from "../utils/UseRequestNotes";
 
 // interface
 import { INote } from "utils/interfaces/note";
 
-const Notes = () => {
+const Notes = ({ notesList }: { notesList: INote[] }) => {
   const styles = useStyles();
-
-  const { allNotes } = useRequestNotes();
 
   return (
     <View style={styles.notesContainer}>
-      {allNotes?.map((note: INote, index: React.Key) => {
+      {notesList?.reverse().map((note: INote, index: React.Key) => {
         return (
           <View key={index} style={styles.note}>
             <View style={styles.borderColor}></View>
