@@ -128,9 +128,20 @@ const useStyles = () => {
       marginBottom: 15,
     },
 
-    noteCreated: {
+    parentDetail : {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
       width: '100%',
-      textAlign: 'right',
+    },
+
+    noteAuthor: {
+      fontSize: 12,
+      color: "#fff",
+    },
+
+    noteCreated: {
       fontSize: 10,
       fontStyle: 'italic',
       color: "#fff",

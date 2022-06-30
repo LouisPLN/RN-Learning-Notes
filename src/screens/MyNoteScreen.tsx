@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 // components
 import useStyles from "../utils/DefaultStyles";
 // services
-import { getAllNotesByAuthor, getMyStoredNotes } from "@services/noteApi";
+import { getAllNotesByAuthor, getMyStoredNotes } from "../services/noteApi";
 // components
 import Notes from "../components/Notes";
 import { INote } from "utils/interfaces/note";
