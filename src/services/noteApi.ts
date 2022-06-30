@@ -31,12 +31,32 @@ const getAllNotes = async () => {
 };
 
 const getStoredNotes = () => {
-  // return JSON.parse(storedNotes);
-
-  return AsyncStorage.getItem("@AllNotes").then((data) => {
+  return AsyncStorage.getItem("@AllNotes").then((data: any) => {
     if (!data) return [];
     return JSON.parse(data);
   });
+};
+
+const getMyStoredNotes = () => {
+  return AsyncStorage.getItem("@AllMyNotes").then((data: any) => {
+    if (!data) return [];
+    return JSON.parse(data);
+  });
+};
+
+const getAllNotesByAuthor = async () => {
+  try {
+    const { data } = await api.get("/note");
+    const result = data.filter(
+      (note: Partial<INote>) => note.author === "maxime"
+    );
+    const jsonValue = JSON.stringify(result);
+    await AsyncStorage.setItem("@AllMyNotes", jsonValue);
+    return result;
+  } catch (error: any) {
+    handleError(error);
+    return null;
+  }
 };
 
 /** Post Note"
@@ -76,7 +96,7 @@ const postNote = async (_body: Partial<INote>) => {
  */
 const updateNoteById = async (_noteId: INote["_id"], _body: Partial<INote>) => {
   try {
-    const { data } = await api.put(`/note/${_noteId}`, _body);
+    const { data } = await api.get("/note");
     return data;
   } catch (error) {
     handleError(error);
@@ -97,7 +117,15 @@ const DeleteNoteById = async (_noteId: INote["_id"]) => {
   }
 };
 
-export { getAllNotes, postNote, DeleteNoteById, updateNoteById };
+export {
+  getAllNotes,
+  postNote,
+  DeleteNoteById,
+  updateNoteById,
+  getAllNotesByAuthor,
+  getStoredNotes,
+  getMyStoredNotes,
+};
 
 // const getNotes = async () => {
 //   const allNotes = await getAllNotes();
