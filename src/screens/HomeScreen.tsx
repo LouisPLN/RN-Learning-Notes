@@ -8,7 +8,6 @@ import { getAllNotes, getStoredNotes } from "../services/noteApi";
 import { INote } from "utils/interfaces/note";
 import DetailsScreen from "./DetailsScreen";
 
-
 const HomeScreen = () => {
   const styles = useStyles();
   const { allNotes } = useContext(NoteContext);
@@ -29,7 +28,19 @@ const HomeScreen = () => {
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
-          <Notes notesList={allNotes} />
+          {!hideScreen ? (
+            <Notes
+              setCurrentNote={setCurrentNote}
+              setHideScreen={setHideScreen}
+              notesList={allNotes}
+            />
+          ) : (
+            <DetailsScreen
+              setHideScreen={setHideScreen}
+              note={currentNote}
+              setCurrentNote={setCurrentNote}
+            />
+          )}
         </ScrollView>
       </View>
     </SafeAreaView>

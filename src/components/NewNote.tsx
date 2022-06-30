@@ -1,5 +1,5 @@
 import { View, Text, TextInput, ScrollView } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 
@@ -10,13 +10,16 @@ import Button from "./Button";
 import useStyles from "../utils/DefaultStyles";
 import { INote } from "utils/interfaces/note";
 import { postNote } from "../services/noteApi";
+import { LoginContext } from "../utils/context";
 
 const NewNote = () => {
   const styles = useStyles();
 
+  const { userName } = useContext(LoginContext);
+
   const noteValidationSchema = yup.object().shape({
-    title: yup.string().required("Un titre est requise"),
-    text: yup.string().required("Un text est requise"),
+    title: yup.string().required("Vous devez saisir un titre"),
+    text: yup.string().required("Vous devez saisir un texte de note"),
   });
 
   const sendData = async (body: any) => {
@@ -24,7 +27,7 @@ const NewNote = () => {
     const data = {
       title: body.title,
       text: body.text,
-      author: "louis",
+      author: userName,
       anonym: true,
       tags: tagsArray,
     };

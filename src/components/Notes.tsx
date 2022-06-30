@@ -7,10 +7,11 @@ import useStyles from "../utils/DefaultStyles";
 // services
 import { getAllNotes } from "../services/noteApi";
 
-import Detail from "./Detail";
+import ButtonDetail from "./ButtonDetail";
 
 // utils
 import { getDateFormated } from "../utils/GetFormatDate";
+import { randomColorTheme } from "../utils/RandomColor";
 
 // interface
 import { INote } from "utils/interfaces/note";
@@ -34,11 +35,18 @@ const Notes = ({
       {notesList?.reverse().map((note: INote, index: React.Key) => {
         return (
           <View key={index} style={styles.note}>
-            <View style={styles.borderColor}></View>
+            <View
+              style={{
+                height: "100%",
+                width: 6,
+                borderRadius: 20,
+                backgroundColor: randomColorTheme,
+              }}
+            ></View>
             <View style={styles.content}>
               <View style={styles.parentDetail}>
                 <Text style={styles.noteTitle}>{note.title}</Text>
-                <Detail
+                <ButtonDetail
                   currentNote={note}
                   setCurrentNote={setCurrentNote}
                   setHideScreen={setHideScreen}

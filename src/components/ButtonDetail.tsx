@@ -3,10 +3,10 @@ import React from "react";
 import { Entypo } from "@expo/vector-icons";
 
 // components
-import Button from "../components/Button";
+import Button from "./Button";
 import { INote } from "utils/interfaces/note";
 
-const Detail = ({
+const ButtonDetail = ({
   setHideScreen,
   currentNote,
   setCurrentNote,
@@ -28,4 +28,4 @@ const Detail = ({
   );
 };
 
-export default Detail;
+export default ButtonDetail;

@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import React from "react";
+import { randomColorTheme } from "./RandomColor";
 
 const useStyles = () => {
   const styles = StyleSheet.create({
@@ -48,7 +49,7 @@ const useStyles = () => {
       height: 60,
       marginTop: 5,
       borderRadius: 10,
-      backgroundColor: '#EF2F88',
+      backgroundColor: randomColorTheme,
     },
 
     textButton: {
@@ -77,13 +78,6 @@ const useStyles = () => {
       marginVertical: 5,
       borderRadius: 5,
       backgroundColor: '#505050'
-    },
-
-    borderColor: {
-      height: '100%',
-      width: 6,
-      borderRadius: 20,
-      backgroundColor: '#F8CB2E',
     },
 
     content: {
