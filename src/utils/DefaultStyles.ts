@@ -168,6 +168,26 @@ const useStyles = () => {
       borderRadius: 5,
       color: '#fff',
       backgroundColor: '#505050',
+    },
+
+    // LOGIN SCREEN
+
+    inputLogin: {
+      width: '100%',
+      height: 60,
+      paddingHorizontal: 14,
+      marginTop: 20,
+      marginBottom: 5,
+      borderRadius: 5,
+      color: '#fff',
+      backgroundColor: '#505050',
+    },
+
+    textLogin: {
+      marginTop: 20,
+      textAlign: 'center',
+      color: "#fff",
+      fontSize: 16,
     }
   });
 

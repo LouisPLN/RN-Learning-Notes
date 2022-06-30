@@ -1,5 +1,6 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
+
 // components
 import useStyles from "../utils/DefaultStyles";
 import Notes from "../components/Notes";
