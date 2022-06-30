@@ -1,38 +1,17 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 // components
 import useStyles from "../utils/DefaultStyles";
-// services
-import { getAllNotesByAuthor, getMyStoredNotes } from "../services/noteApi";
+
 // components
 import Notes from "../components/Notes";
 import { INote } from "utils/interfaces/note";
+import { NoteContext } from "../utils/context";
 
 const MyNoteScreen = () => {
   const styles = useStyles();
-  const [notesList, setNotesList] = useState([] as INote[]);
-
-  const getData = async () => {
-    const data = await getAllNotesByAuthor();
-    setNotesList(data);
-  };
-
-  const getStoredData = async () => {
-    const data = await getMyStoredNotes();
-    setNotesList(data);
-  };
-
-  useEffect(() => {
-    getStoredData();
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getData();
-    }, 30000);
-    return () => clearInterval(interval);
-  }, []);
+  const { allMyNotes } = useContext(NoteContext);
 
   return (
     <SafeAreaView style={styles.all}>
@@ -44,7 +23,7 @@ const MyNoteScreen = () => {
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
-          <Notes notesList={notesList} />
+          <Notes notesList={allMyNotes} />
         </ScrollView>
       </View>
     </SafeAreaView>
