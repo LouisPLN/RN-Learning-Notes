@@ -39,9 +39,14 @@ const Notes = ({ notesList }: { notesList: INote[] }) => {
                 })}
               </View>
               <Text style={styles.noteText}>{note.text}</Text>
-              <Text style={styles.noteCreated}>
-                {getDateFormated(note.creation_date)}
-              </Text>
+              <View style={styles.parentDetail}>
+                <Text style={styles.noteAuthor}>
+                  par {note.author !== "" ? note.author : "Anonyme"}
+                </Text>
+                <Text style={styles.noteCreated}>
+                  {getDateFormated(note.creation_date)}
+                </Text>
+              </View>
             </View>
           </View>
         );
