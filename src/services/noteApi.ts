@@ -4,7 +4,7 @@ import { INote } from "../utils/interfaces/note";
 
 /** Get All Notes
  * GET /note
- * @returns {Promise<any>}
+ * @returns {Promise<INote[]>}
  * {
     "__v": 0,
     "_id": "62bc0cc43189936352b521c5",
@@ -44,7 +44,7 @@ const getMyStoredNotes = () => {
   });
 };
 
-const getAllNotesByAuthor = async () => {
+const getAllMyNotes = async () => {
   try {
     const { data } = await api.get("/note");
     const result = data.filter(
@@ -57,6 +57,39 @@ const getAllNotesByAuthor = async () => {
     handleError(error);
     return null;
   }
+};
+
+const getAllTags = async () => {
+  try {
+    const { data } = await api.get("/note");
+    const result = data
+      .map((note: Partial<INote>) => note.tags)
+      .flat()
+      .filter(
+        (value: string, index: number, self: string[]) =>
+          self.indexOf(value) === index
+      );
+    const jsonValue = JSON.stringify(result);
+    await AsyncStorage.setItem("@AllTags", jsonValue);
+    return result;
+  } catch (error: any) {
+    handleError(error);
+    return null;
+  }
+};
+
+const getStoredTags = () => {
+  return AsyncStorage.getItem("@AllTags").then((data: string | null) => {
+    if (!data) return [];
+    return JSON.parse(data);
+  });
+};
+
+const getMyStoredUserInfo = () => {
+  return AsyncStorage.getItem("@UserInfo").then((data: string | null) => {
+    if (!data) return [];
+    return JSON.parse(data);
+  });
 };
 
 /** Post Note"
@@ -124,9 +157,12 @@ export {
   postNote,
   DeleteNoteById,
   updateNoteById,
-  getAllNotesByAuthor,
+  getAllMyNotes,
   getStoredNotes,
   getMyStoredNotes,
+  getStoredTags,
+  getAllTags,
+  getMyStoredUserInfo,
 };
 
 // const getNotes = async () => {
