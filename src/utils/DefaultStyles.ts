@@ -199,7 +199,72 @@ const useStyles = () => {
       textAlign: 'center',
       color: "#fff",
       fontSize: 16,
-    }
+    },
+
+    // NEW NOTE
+
+    goBackContainer: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      width: '100%',
+      paddingVertical: 20,
+      borderBottomWidth: 1,
+      borderBottomColor: "#505050",
+    },
+
+    goBack: {
+      color: "#fff",
+      fontSize: 16,
+    },
+
+    // DETAIL SCREEN
+
+    noteDetailContainer: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignContent: "flex-start",
+      width: '100%',
+    },
+
+    detailImage: {
+      width: '100%',
+    },
+
+    detailTitle: {
+      marginVertical: 20,
+      fontSize: 30,
+      fontWeight: 'bold',
+      textAlign: "center",
+      color: '#fff',
+    },
+
+    detailText: {
+      marginVertical: 20,
+      fontSize: 18,
+      textAlign: "left",
+      color: '#fff',
+    },
+
+    detailTags: {
+      fontSize: 18,
+      color: '#99FEFF',
+    },
+
+    detailAuthor: {
+      fontSize: 16,
+      textAlign: "left",
+      color: '#fff',
+    },
+
+    detailDate: {
+      fontSize: 16,
+      textAlign: "right",
+      fontStyle: 'italic',
+      color: '#fff',
+    },
   });
 
   return styles;
