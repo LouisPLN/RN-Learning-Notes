@@ -3,7 +3,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // components
-import { HomeScreen, MyNoteScreen, NewNoteScreen } from "@screens";
+import { HomeScreen } from "@screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +22,6 @@ const NoteStack = () => {
         options={{
           headerTransparent: true,
           headerShown: false,
-          headerTintColor: "#ffffff",
         }}
       />
     </Stack.Navigator>

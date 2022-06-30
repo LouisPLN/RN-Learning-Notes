@@ -45,7 +45,8 @@ const useStyles = () => {
       justifyContent: "center",
       alignItems: "center",
       width: '100%',
-      paddingVertical: 20,
+      paddingTop: 20,
+      paddingBottom: 100,
     },
 
     note: {
@@ -61,16 +62,51 @@ const useStyles = () => {
 
     borderColor: {
       height: '100%',
-      width: 8,
+      width: 6,
       borderRadius: 20,
       backgroundColor: '#F8CB2E',
+    },
+
+    content: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignContent: 'flex-start',
+      paddingVertical: 10,
+      width: '90%',
+      marginLeft: 10,
+    },
+
+    noteTitle: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: '#fff',
+      marginBottom: 5,
+    },
+
+    hr: {
+      width: '100%',
+      height: 1,
+      marginVertical:5,
+      backgroundColor: '#808080'
+    },
+
+    tagsParent : {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignContent: 'center',
+    },
+
+    noteTags: {
+      fontSize: 14,
+      color: '#99FEFF',
+      marginBottom: 5,
     },
 
     noteText: {
       fontSize: 16,
       color: '#fff',
-      marginLeft: 5,
-      paddingVertical: 10,
     }
   });
 
