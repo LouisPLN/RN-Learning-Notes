@@ -87,26 +87,34 @@ const useStyles = () => {
     hr: {
       width: '100%',
       height: 1,
-      marginVertical:5,
+      marginVertical:10,
       backgroundColor: '#808080'
     },
 
     tagsParent : {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignContent: 'center',
+      flexWrap: 'wrap',
+      marginBottom: 10,
     },
 
     noteTags: {
       fontSize: 14,
       color: '#99FEFF',
-      marginBottom: 5,
     },
 
     noteText: {
       fontSize: 16,
       color: '#fff',
+      marginBottom: 15,
+    },
+
+    noteCreated: {
+      width: '100%',
+      textAlign: 'right',
+      fontSize: 10,
+      fontStyle: 'italic',
+      color: "#fff",
     }
   });
 
