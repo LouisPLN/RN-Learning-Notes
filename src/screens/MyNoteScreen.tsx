@@ -12,7 +12,7 @@ import { Feather } from "@expo/vector-icons";
 import useStyles from "../utils/DefaultStyles";
 import DetailsScreen from "./DetailsScreen";
 import Notes from "../components/Notes";
-import { INote } from "utils/interfaces/note";
+import { INote } from "../utils/interfaces/note";
 import { NoteContext } from "../utils/context";
 
 const MyNoteScreen = () => {

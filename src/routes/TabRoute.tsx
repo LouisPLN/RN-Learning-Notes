@@ -3,8 +3,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // components
-import { HomeScreen, MyNoteScreen, NewNoteScreen } from "@screens";
+import { HomeScreen, MyNoteScreen, NewNoteScreen } from "../screens";
 import { Entypo, Ionicons } from "@expo/vector-icons";
+import HomeStack from "./HomeStack";
 
 const Tab = createBottomTabNavigator();
 

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 // routes
-import { TabRoute } from "@routes";
+import { TabRoute } from "./src/routes";
 
 // components
 import useStyles from "./src/utils/DefaultStyles";
@@ -18,7 +18,7 @@ import {
   getStoredTags,
   getMyStoredUserInfo,
 } from "./src/services/noteApi";
-import { INote } from "utils/interfaces/note";
+import { INote } from "./src/utils/interfaces/note";
 
 import { LoginContext, NoteContext, TagContext } from "./src/utils/context";
 

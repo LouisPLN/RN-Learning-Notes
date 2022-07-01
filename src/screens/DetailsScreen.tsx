@@ -7,8 +7,8 @@ import useStyles from "../utils/DefaultStyles";
 
 // components
 import Button from "../components/Button";
-import Notes from "components/Notes";
-import { INote } from "utils/interfaces/note";
+import Notes from "../components/Notes";
+import { INote } from "../utils/interfaces/note";
 import ButtonEdit from "../components/ButtonEdit";
 
 // utils
