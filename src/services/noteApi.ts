@@ -1,10 +1,12 @@
+import { useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api, handleError } from "@utils/axios";
-import { INote } from "@utils/interfaces/note";
+import { api, handleError } from "../utils/axios";
+import { INote } from "../utils/interfaces/note";
+import { LoginContext } from "../utils/context";
 
 /** Get All Notes
  * GET /note
- * @returns {Promise<any>}
+ * @returns {Promise<INote[]>}
  * {
     "__v": 0,
     "_id": "62bc0cc43189936352b521c5",
@@ -31,9 +33,62 @@ const getAllNotes = async () => {
 };
 
 const getStoredNotes = () => {
-  // return JSON.parse(storedNotes);
+  return AsyncStorage.getItem("@AllNotes").then((data: any) => {
+    if (!data) return [];
+    return JSON.parse(data);
+  });
+};
 
-  return AsyncStorage.getItem("@AllNotes").then((data) => {
+const getMyStoredNotes = () => {
+  return AsyncStorage.getItem("@AllMyNotes").then((data: any) => {
+    if (!data) return [];
+    return JSON.parse(data);
+  });
+};
+
+const getAllMyNotes = async (_userName: string) => {
+  try {
+    const { data } = await api.get("/note");
+    const result = data.filter(
+      (note: Partial<INote>) => note.author === _userName
+    );
+    const jsonValue = JSON.stringify(result);
+    await AsyncStorage.setItem("@AllMyNotes", jsonValue);
+    return result;
+  } catch (error: any) {
+    handleError(error);
+    return null;
+  }
+};
+
+const getAllTags = async () => {
+  try {
+    const { data } = await api.get("/note");
+    const result = data
+      .map((note: Partial<INote>) => note.tags)
+      .flat()
+      .filter(
+        (value: string, index: number, self: string[]) =>
+          self.indexOf(value) === index
+      );
+    const jsonValue = JSON.stringify(result);
+    await AsyncStorage.setItem("@AllTags", jsonValue);
+    return result;
+  } catch (error: any) {
+    handleError(error);
+    return null;
+  }
+};
+
+const getStoredTags = () => {
+  return AsyncStorage.getItem("@AllTags").then((data: string | null) => {
+    if (!data) return [];
+    return JSON.parse(data);
+  });
+};
+
+const getMyStoredUserInfo = () => {
+  return AsyncStorage.getItem("@UserInfo").then((data: string | null) => {
     if (!data) return [];
     return JSON.parse(data);
   });
@@ -50,11 +105,13 @@ const getStoredNotes = () => {
   }
  */
 const postNote = async (_body: Partial<INote>) => {
+  console.log("_body:", _body);
   try {
     const { data } = await api.post("/note", _body);
+    console.log("data:", data);
     return data;
   } catch (error) {
-    handleError(error);
+    console.warn(error);
     return null;
   }
 };
@@ -75,8 +132,11 @@ const postNote = async (_body: Partial<INote>) => {
     }
  */
 const updateNoteById = async (_noteId: INote["_id"], _body: Partial<INote>) => {
+  console.log("_noteId:", _noteId);
+  console.log("_body:", _body);
   try {
     const { data } = await api.put(`/note/${_noteId}`, _body);
+    console.log("data:", data);
     return data;
   } catch (error) {
     handleError(error);
@@ -87,7 +147,7 @@ const updateNoteById = async (_noteId: INote["_id"], _body: Partial<INote>) => {
 /** Delete
  * DELETE /note/:noteId
  **/
-const DeleteNoteById = async (_noteId: INote["_id"]) => {
+const deleteNoteById = async (_noteId: INote["_id"]) => {
   try {
     const { data } = await api.delete(`/note/${_noteId}`);
     return data;
@@ -97,25 +157,15 @@ const DeleteNoteById = async (_noteId: INote["_id"]) => {
   }
 };
 
-export { getAllNotes, postNote, DeleteNoteById, updateNoteById };
-
-// const getNotes = async () => {
-//   const allNotes = await getAllNotes();
-//   setNotesList(allNotes);
-// };
-
-// const updateNotes = async () => {
-//   const note = await updateNoteById("62bc573a3189936352b5acf7", {
-//     title: "Updated title",
-//   });
-// };
-
-// const addNotes = async () => {
-//   await postNote({
-//     title: "test2",
-//     text: "test2",
-//     author: "test",
-//     anonym: true,
-//     tags: [],
-//   });
-// };
+export {
+  getAllNotes,
+  postNote,
+  deleteNoteById,
+  updateNoteById,
+  getAllMyNotes,
+  getStoredNotes,
+  getMyStoredNotes,
+  getStoredTags,
+  getAllTags,
+  getMyStoredUserInfo,
+};

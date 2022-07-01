@@ -1,4 +1,4 @@
-import NoteStack from "./NoteStack";
+import HomeStack from "./HomeStack";
 import TabRoute from "./TabRoute";
 
-export {TabRoute, NoteStack}
+export {TabRoute, HomeStack}

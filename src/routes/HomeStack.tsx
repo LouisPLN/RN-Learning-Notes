@@ -3,11 +3,11 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // components
-import { HomeScreen, MyNoteScreen, NewNoteScreen } from "@screens";
+import { HomeScreen, DetailScreen, UpdateNoteScreen } from "../screens";
 
 const Stack = createNativeStackNavigator();
 
-const NoteStack = () => {
+const HomeStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -22,11 +22,26 @@ const NoteStack = () => {
         options={{
           headerTransparent: true,
           headerShown: false,
-          headerTintColor: "#ffffff",
+        }}
+      />
+      <Stack.Screen
+        name="DetailScreen"
+        component={DetailScreen}
+        options={{
+          headerTransparent: true,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="UpdateNoteScreen"
+        component={UpdateNoteScreen}
+        options={{
+          headerTransparent: true,
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
   );
 };
 
-export default NoteStack;
+export default HomeStack;

@@ -1,21 +1,24 @@
 import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // components
-import NewNote from "../components/forms/NewNote";
+import UpdateNote from "../components/forms/UpdateNote";
 
 // style
 import useStyles from "../utils/DefaultStyles";
 import ButtonLogout from "../components/ButtonLogout";
+import { NoteContext } from "utils/context";
 
-const NewNoteScreen = () => {
+const UpdateNoteScreen = ({ route }: { route: any }) => {
   const styles = useStyles();
+
+  const { currentNote } = useContext(NoteContext);
 
   return (
     <SafeAreaView style={styles.all}>
       <View style={styles.container}>
         <View style={styles.parent}>
-          <Text style={styles.title}>🖍 Créer une note</Text>
+          <Text style={styles.title}>🖍 Modifier {currentNote.title}</Text>
           <ButtonLogout />
         </View>
         <ScrollView
@@ -23,11 +26,11 @@ const NewNoteScreen = () => {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="always"
         >
-          <NewNote />
+          <UpdateNote />
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
 
-export default NewNoteScreen;
+export default UpdateNoteScreen;

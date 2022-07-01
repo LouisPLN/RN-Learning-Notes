@@ -3,15 +3,16 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // components
-import { HomeScreen, MyNoteScreen, NewNoteScreen } from "@screens";
+import { HomeScreen, MyNoteScreen, NewNoteScreen } from "../screens";
 import { Entypo, Ionicons } from "@expo/vector-icons";
+import HomeStack from "./HomeStack";
 
 const Tab = createBottomTabNavigator();
 
 const TabRoute = () => {
   return (
     <Tab.Navigator
-      initialRouteName="HomeScreen"
+      initialRouteName="HomeStack"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -22,14 +23,14 @@ const TabRoute = () => {
           right: 20,
           elevation: 0,
           backgroundColor: "#fff",
-          borderRadius: 15,
+          borderRadius: 10,
           height: 70,
         },
       }}
     >
       <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="HomeStack"
+        component={HomeStack}
         options={{
           tabBarIcon: () => <Entypo name="list" size={30} />,
         }}
@@ -38,16 +39,14 @@ const TabRoute = () => {
         name="NewNoteScreen"
         component={NewNoteScreen}
         options={{
-          tabBarIcon: () => <Entypo name="plus" size={30} color="black" />,
+          tabBarIcon: () => <Entypo name="plus" size={30} />,
         }}
       />
       <Tab.Screen
         name="MyNoteScreen"
         component={MyNoteScreen}
         options={{
-          tabBarIcon: () => (
-            <Ionicons name="person-sharp" size={30} color="black" />
-          ),
+          tabBarIcon: () => <Ionicons name="person-sharp" size={30} />,
         }}
       />
     </Tab.Navigator>

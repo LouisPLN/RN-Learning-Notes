@@ -1,46 +1,67 @@
-import { View, Text, SafeAreaView } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
+import React, { useState, useEffect, useContext } from "react";
 
 // components
 import useStyles from "../utils/DefaultStyles";
-// services
-import { getAllNotes, updateNoteById, postNote } from "@services/noteApi";
-// interface
-import { INote } from "utils/interfaces/note";
+import Notes from "../components/Notes";
+import { NoteContext } from "../utils/context";
+import { INote } from "../utils/interfaces/note";
+import DetailsScreen from "./DetailsScreen";
+import Filters from "../components/Filters";
+import ButtonLogout from "components/ButtonLogout";
+import { getAllNotes } from "services/noteApi";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: { navigation: any }) => {
   const styles = useStyles();
+  const { allNotes, setAllNotes, reloadNote, setReloadNote } =
+    useContext(NoteContext);
+  const [hideDetailsScreen, setHideDetailsScreen] = useState(false);
 
-  // constants
-  const [notesList, setNotesList] = useState([]);
-  // functions
-  const getNotes = async () => {
-    const allNotes = await getAllNotes();
-    setNotesList(allNotes);
+  const handleRefresh = async () => {
+    const notes = await getAllNotes();
+    setAllNotes(notes);
   };
-
-  // initialization
-  useEffect(() => {
-    getNotes();
-  }, []);
 
   return (
     <SafeAreaView style={styles.all}>
       <View style={styles.container}>
         <View style={styles.parent}>
-          <Text style={styles.title}>📌 Les notes partagés</Text>
+          {!hideDetailsScreen ? (
+            <Text style={styles.title}>📌 Les notes partagés</Text>
+          ) : (
+            <Text style={styles.title}>🔍 Détails</Text>
+          )}
+          <ButtonLogout />
         </View>
-        <View style={styles.notesContainer}>
-          {notesList?.map((note: INote, index: React.Key) => {
-            return (
-              <View key={index} style={styles.note}>
-                <View style={styles.borderColor}></View>
-                <Text style={styles.noteText}>{note.title}</Text>
-              </View>
-            );
-          })}
-        </View>
+        {!hideDetailsScreen && (
+          <View style={{ width: "100%" }}>
+            <Filters />
+            <View style={styles.hr}></View>
+          </View>
+        )}
+
+        <ScrollView
+          style={{ width: "100%" }}
+          showsVerticalScrollIndicator={false}
+          // refreshControl={
+          //   <RefreshControl refreshing={reloadNote} onRefresh={handleRefresh} />
+          // }
+        >
+          {!hideDetailsScreen ? (
+            <Notes
+              setHideDetailsScreen={setHideDetailsScreen}
+              notesList={allNotes}
+            />
+          ) : (
+            <DetailsScreen setHideDetailsScreen={setHideDetailsScreen} />
+          )}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
