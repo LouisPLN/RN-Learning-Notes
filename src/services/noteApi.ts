@@ -1,9 +1,8 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api, handleError } from "../utils/axios";
 import { INote } from "../utils/interfaces/note";
-import { LoginContext } from '../utils/context';
-
+import { LoginContext } from "../utils/context";
 
 /** Get All Notes
  * GET /note
@@ -47,12 +46,11 @@ const getMyStoredNotes = () => {
   });
 };
 
-const getAllMyNotes = async () => {
-  const { userName } = useContext(LoginContext);
+const getAllMyNotes = async (_userName: string) => {
   try {
     const { data } = await api.get("/note");
     const result = data.filter(
-      (note: Partial<INote>) => note.author === userName
+      (note: Partial<INote>) => note.author === _userName
     );
     const jsonValue = JSON.stringify(result);
     await AsyncStorage.setItem("@AllMyNotes", jsonValue);
@@ -134,8 +132,11 @@ const postNote = async (_body: Partial<INote>) => {
     }
  */
 const updateNoteById = async (_noteId: INote["_id"], _body: Partial<INote>) => {
+  console.log("_noteId:", _noteId);
+  console.log("_body:", _body);
   try {
-    const { data } = await api.get("/note");
+    const { data } = await api.put(`/note/${_noteId}`, _body);
+    console.log("data:", data);
     return data;
   } catch (error) {
     handleError(error);
@@ -168,24 +169,3 @@ export {
   getAllTags,
   getMyStoredUserInfo,
 };
-
-// const getNotes = async () => {
-//   const allNotes = await getAllNotes();
-//   setNotesList(allNotes);
-// };
-
-// const updateNotes = async () => {
-//   const note = await updateNoteById("62bc573a3189936352b5acf7", {
-//     title: "Updated title",
-//   });
-// };
-
-// const addNotes = async () => {
-//   await postNote({
-//     title: "test2",
-//     text: "test2",
-//     author: "test",
-//     anonym: true,
-//     tags: [],
-//   });
-// };

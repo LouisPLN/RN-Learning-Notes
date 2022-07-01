@@ -6,16 +6,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import useStyles from "../utils/DefaultStyles";
 import Button from "../components/Button";
 import { LoginContext } from "../utils/context";
-import { handleError } from "utils/axios";
 
-const LoginScreen = ({ setHideScreen }: { setHideScreen: any }) => {
+const LoginScreen = () => {
   const styles = useStyles();
-  const { userName, setUserName } = useContext(LoginContext);
+  const { userName, setUserName, setHideLoginScreen } =
+    useContext(LoginContext);
 
   const handlePress = async () => {
     const value = JSON.stringify(userName);
     await AsyncStorage.setItem("@UserInfo", value);
-    setHideScreen(false);
+    setHideLoginScreen(false);
   };
 
   return (

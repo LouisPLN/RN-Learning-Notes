@@ -7,6 +7,10 @@ export const NoteContext = createContext(
     setAllNotes: (allNotes: INote[]) => void;
     allMyNotes: INote[];
     setAllMyNotes: (allMyNotes: INote[]) => void;
+    currentNote: INote;
+    setCurrentNote: (currentNote: INote) => void;
+    reloadNote: boolean;
+    setReloadNote: (reloadNote: boolean) => void;
   }
 );
 
@@ -21,5 +25,7 @@ export const LoginContext = createContext(
   {} as {
     userName: string;
     setUserName: (userName: string) => void;
+    hideLoginScreen: boolean;
+    setHideLoginScreen: (hideLoginScreen: boolean) => void;
   }
 );

@@ -5,13 +5,12 @@ import * as yup from "yup";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 //components
-import Button from "./Button";
+import Button from "../Button";
 
 // style
-import useStyles from "../utils/DefaultStyles";
-import { INote } from "../utils/interfaces/note";
-import { postNote } from "../services/noteApi";
-import { LoginContext } from "../utils/context";
+import useStyles from "../../utils/DefaultStyles";
+import { postNote } from "../../services/noteApi";
+import { LoginContext } from "../../utils/context";
 
 const NewNote = () => {
   const styles = useStyles();
@@ -40,7 +39,11 @@ const NewNote = () => {
       <View style={styles.createNoteContainer}>
         <Formik
           validationSchema={noteValidationSchema}
-          initialValues={{ title: "", tags: "", text: "" }}
+          initialValues={{
+            title: "",
+            tags: "",
+            text: "",
+          }}
           onSubmit={(body: any) => sendData(body)}
         >
           {({

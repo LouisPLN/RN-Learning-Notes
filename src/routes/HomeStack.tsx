@@ -3,7 +3,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // components
-import { HomeScreen, DetailScreen } from "../screens";
+import { HomeScreen, DetailScreen, UpdateNoteScreen } from "../screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +27,14 @@ const HomeStack = () => {
       <Stack.Screen
         name="DetailScreen"
         component={DetailScreen}
+        options={{
+          headerTransparent: true,
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="UpdateNoteScreen"
+        component={UpdateNoteScreen}
         options={{
           headerTransparent: true,
           headerShown: false,
