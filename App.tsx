@@ -49,7 +49,7 @@ export default function App() {
     setAllTags(tags);
     const userInfo = await getMyStoredUserInfo();
     setUserName(userInfo);
-    if (userInfo.length !== 0) setHideScreen(false);
+    // if (userInfo.length !== 0) setHideScreen(false);
   };
 
   useEffect(() => {

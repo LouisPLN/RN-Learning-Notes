@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // styles
 import useStyles from "../utils/DefaultStyles";
@@ -8,6 +8,7 @@ import useStyles from "../utils/DefaultStyles";
 import { getAllNotes } from "../services/noteApi";
 
 import ButtonDetail from "./ButtonDetail";
+import ButtonDelete from "./ButtonDelete";
 
 // utils
 import { getDateFormated } from "../utils/GetFormatDate";
@@ -18,6 +19,7 @@ import { INote } from "utils/interfaces/note";
 
 // screen
 import DetailsScreen from "../screens/DetailsScreen";
+import { LoginContext } from "../utils/context";
 
 const Notes = ({
   notesList,
@@ -30,6 +32,8 @@ const Notes = ({
 }) => {
   const styles = useStyles();
 
+  const { userName } = useContext(LoginContext);
+
   return (
     <View style={styles.notesContainer}>
       {notesList?.reverse().map((note: INote, index: React.Key) => {
@@ -40,17 +44,22 @@ const Notes = ({
                 height: "100%",
                 width: 6,
                 borderRadius: 20,
-                backgroundColor: randomColorTheme,
+                backgroundColor: randomColorTheme(),
               }}
             ></View>
             <View style={styles.content}>
               <View style={styles.parentDetail}>
                 <Text style={styles.noteTitle}>{note.title}</Text>
-                <ButtonDetail
-                  currentNote={note}
-                  setCurrentNote={setCurrentNote}
-                  setHideScreen={setHideScreen}
-                />
+                <View style={styles.annexesButton}>
+                  <ButtonDetail
+                    currentNote={note}
+                    setCurrentNote={setCurrentNote}
+                    setHideScreen={setHideScreen}
+                  />
+                  {note?.author === userName && (
+                    <ButtonDelete noteId={note?._id} />
+                  )}
+                </View>
               </View>
               <View style={styles.hr}></View>
               <View style={styles.tagsParent}>
