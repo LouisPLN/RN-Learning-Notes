@@ -25,16 +25,18 @@ import { LoginContext, NoteContext, TagContext } from "./src/utils/context";
 export default function App() {
   const styles = useStyles();
 
-  const [hideScreen, setHideScreen] = useState(true);
+  const [hideLoginScreen, setHideLoginScreen] = useState(true);
   const [allNotes, setAllNotes] = useState([] as INote[]);
   const [allMyNotes, setAllMyNotes] = useState([] as INote[]);
   const [allTags, setAllTags] = useState([] as string[]);
   const [userName, setUserName] = useState("");
+  const [currentNote, setCurrentNote] = useState({} as INote);
+  const [reloadNote, setReloadNote] = useState(false);
 
   const getData = async () => {
     const notes = await getAllNotes();
     setAllNotes(notes);
-    const myNotes = await getAllMyNotes();
+    const myNotes = await getAllMyNotes(userName);
     setAllMyNotes(myNotes);
     const tags = await getAllTags();
     setAllTags(tags);
@@ -49,7 +51,7 @@ export default function App() {
     setAllTags(tags);
     const userInfo = await getMyStoredUserInfo();
     setUserName(userInfo);
-    // if (userInfo.length !== 0) setHideScreen(false);
+    if (userInfo.length !== 0) setHideLoginScreen(false);
   };
 
   useEffect(() => {
@@ -63,19 +65,30 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    getData();
+  }, [reloadNote]);
+
   return (
-    <LoginContext.Provider value={{ userName, setUserName }}>
+    <LoginContext.Provider
+      value={{ userName, setUserName, hideLoginScreen, setHideLoginScreen }}
+    >
       <NoteContext.Provider
-        value={{ allNotes, setAllNotes, allMyNotes, setAllMyNotes }}
+        value={{
+          allNotes,
+          setAllNotes,
+          allMyNotes,
+          setAllMyNotes,
+          currentNote,
+          setCurrentNote,
+          reloadNote,
+          setReloadNote,
+        }}
       >
         <TagContext.Provider value={{ allTags, setAllTags }}>
           <NavigationContainer>
             <SafeAreaView style={styles.all}>
-              {hideScreen ? (
-                <LoginScreen setHideScreen={setHideScreen} />
-              ) : (
-                <TabRoute />
-              )}
+              {hideLoginScreen ? <LoginScreen /> : <TabRoute />}
             </SafeAreaView>
           </NavigationContainer>
         </TagContext.Provider>

@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 
 // styles
@@ -14,23 +14,21 @@ import ButtonEdit from "../components/ButtonEdit";
 // utils
 import { getDateFormated } from "../utils/GetFormatDate";
 import { randomColorTheme } from "../utils/RandomColor";
+import { NoteContext } from "utils/context";
 
 const DetailsScreen = ({
-  setHideScreen,
-  note,
-  setCurrentNote,
+  setHideDetailsScreen,
 }: {
-  setHideScreen: any;
-  note: INote;
-  setCurrentNote: any;
+  setHideDetailsScreen: any;
 }) => {
   const styles = useStyles();
+  const { currentNote } = useContext(NoteContext);
 
   return (
     <View>
       <View style={styles.goBackContainer}>
         <MaterialIcons name="keyboard-arrow-left" size={20} color="white" />
-        <Text style={styles.goBack} onPress={() => setHideScreen(false)}>
+        <Text style={styles.goBack} onPress={() => setHideDetailsScreen(false)}>
           Retour
         </Text>
       </View>
@@ -44,14 +42,20 @@ const DetailsScreen = ({
           }}
         ></View>
         <View style={styles.noteDetailParent}>
-          <ButtonEdit />
-          {note?.image && (
-            <Image style={styles.detailImage} source={{ uri: note?.image }} />
+          <ButtonEdit
+            currentNote={currentNote}
+            setHideDetailsScreen={setHideDetailsScreen}
+          />
+          {currentNote?.image && (
+            <Image
+              style={styles.detailImage}
+              source={{ uri: currentNote?.image }}
+            />
           )}
-          <Text style={styles.detailTitle}>{note.title}</Text>
+          <Text style={styles.detailTitle}>{currentNote.title}</Text>
           <View style={styles.hr}></View>
           <View style={styles.tagsParent}>
-            {note?.tags?.map((tag: string, index: React.Key) => {
+            {currentNote?.tags?.map((tag: string, index: React.Key) => {
               return (
                 <Text key={index} style={styles.detailTags}>
                   #{tag}{" "}
@@ -59,13 +63,13 @@ const DetailsScreen = ({
               );
             })}
           </View>
-          <Text style={styles.detailText}>{note.text}</Text>
+          <Text style={styles.detailText}>{currentNote.text}</Text>
           <View style={styles.parentDetail}>
             <Text style={styles.detailAuthor}>
-              par {note.author !== "" ? note.author : "Anonyme"}
+              par {currentNote.author !== "" ? currentNote.author : "Anonyme"}
             </Text>
             <Text style={styles.detailDate}>
-              {getDateFormated(note.creation_date)}
+              {getDateFormated(currentNote.creation_date)}
             </Text>
           </View>
         </View>

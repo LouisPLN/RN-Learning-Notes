@@ -1,4 +1,10 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
 import React, { useState, useEffect, useContext } from "react";
 
 // components
@@ -8,33 +14,32 @@ import { NoteContext } from "../utils/context";
 import { INote } from "../utils/interfaces/note";
 import DetailsScreen from "./DetailsScreen";
 import Filters from "../components/Filters";
+import ButtonLogout from "components/ButtonLogout";
+import { getAllNotes } from "services/noteApi";
 
 const HomeScreen = ({ navigation }: { navigation: any }) => {
   const styles = useStyles();
-  const { allNotes } = useContext(NoteContext);
-  const [currentNote, setCurrentNote] = useState({} as INote);
-  const [hideScreen, setHideScreen] = useState(false);
+  const { allNotes, setAllNotes, reloadNote, setReloadNote } =
+    useContext(NoteContext);
+  const [hideDetailsScreen, setHideDetailsScreen] = useState(false);
+
+  const handleRefresh = async () => {
+    const notes = await getAllNotes();
+    setAllNotes(notes);
+  };
 
   return (
     <SafeAreaView style={styles.all}>
       <View style={styles.container}>
         <View style={styles.parent}>
-          {!hideScreen ? (
+          {!hideDetailsScreen ? (
             <Text style={styles.title}>📌 Les notes partagés</Text>
           ) : (
             <Text style={styles.title}>🔍 Détails</Text>
           )}
-
-          {/* <Text
-            style={{ color: "white" }}
-            onPress={() => {
-              navigation.navigate("DetailScreen", { note });
-            }}
-          >
-            Aller à la page détail
-          </Text> */}
+          <ButtonLogout />
         </View>
-        {!hideScreen && (
+        {!hideDetailsScreen && (
           <View style={{ width: "100%" }}>
             <Filters />
             <View style={styles.hr}></View>
@@ -44,19 +49,17 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
+          // refreshControl={
+          //   <RefreshControl refreshing={reloadNote} onRefresh={handleRefresh} />
+          // }
         >
-          {!hideScreen ? (
+          {!hideDetailsScreen ? (
             <Notes
-              setCurrentNote={setCurrentNote}
-              setHideScreen={setHideScreen}
+              setHideDetailsScreen={setHideDetailsScreen}
               notesList={allNotes}
             />
           ) : (
-            <DetailsScreen
-              setHideScreen={setHideScreen}
-              note={currentNote}
-              setCurrentNote={setCurrentNote}
-            />
+            <DetailsScreen setHideDetailsScreen={setHideDetailsScreen} />
           )}
         </ScrollView>
       </View>

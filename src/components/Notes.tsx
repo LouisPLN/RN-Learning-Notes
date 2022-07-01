@@ -19,16 +19,14 @@ import { INote } from "../utils/interfaces/note";
 
 // screen
 import DetailsScreen from "../screens/DetailsScreen";
-import { LoginContext } from "../utils/context";
+import { LoginContext, NoteContext } from "../utils/context";
 
 const Notes = ({
   notesList,
-  setHideScreen,
-  setCurrentNote,
+  setHideDetailsScreen,
 }: {
   notesList: INote[];
-  setHideScreen: any;
-  setCurrentNote: any;
+  setHideDetailsScreen: any;
 }) => {
   const styles = useStyles();
 
@@ -53,8 +51,7 @@ const Notes = ({
                 <View style={styles.annexesButton}>
                   <ButtonDetail
                     currentNote={note}
-                    setCurrentNote={setCurrentNote}
-                    setHideScreen={setHideScreen}
+                    setHideDetailsScreen={setHideDetailsScreen}
                   />
                   {note?.author === userName && (
                     <ButtonDelete noteId={note?._id} />

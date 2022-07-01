@@ -14,42 +14,35 @@ import DetailsScreen from "./DetailsScreen";
 import Notes from "../components/Notes";
 import { INote } from "../utils/interfaces/note";
 import { NoteContext } from "../utils/context";
+import ButtonLogout from "../components/ButtonLogout";
 
 const MyNoteScreen = () => {
   const styles = useStyles();
   const { allMyNotes } = useContext(NoteContext);
-  const [currentNote, setCurrentNote] = useState({} as INote);
-  const [hideScreen, setHideScreen] = useState(false);
+  const [hideDetailsScreen, setHideDetailsScreen] = useState(false);
 
   return (
     <SafeAreaView style={styles.all}>
       <View style={styles.container}>
         <View style={styles.parent}>
-          {!hideScreen ? (
+          {!hideDetailsScreen ? (
             <Text style={styles.title}>🙋‍♂️ Mes notes</Text>
           ) : (
             <Text style={styles.title}>🔍 Détails</Text>
           )}
-          <TouchableOpacity style={{ position: "absolute", right: 0 }}>
-            <Feather name="power" size={25} color="white" />
-          </TouchableOpacity>
+          <ButtonLogout />
         </View>
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
-          {!hideScreen ? (
+          {!hideDetailsScreen ? (
             <Notes
-              setCurrentNote={setCurrentNote}
-              setHideScreen={setHideScreen}
+              setHideDetailsScreen={setHideDetailsScreen}
               notesList={allMyNotes}
             />
           ) : (
-            <DetailsScreen
-              setHideScreen={setHideScreen}
-              note={currentNote}
-              setCurrentNote={setCurrentNote}
-            />
+            <DetailsScreen setHideDetailsScreen={setHideDetailsScreen} />
           )}
         </ScrollView>
       </View>

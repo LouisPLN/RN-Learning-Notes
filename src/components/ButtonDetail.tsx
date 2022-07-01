@@ -1,21 +1,21 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { Entypo } from "@expo/vector-icons";
 
 // components
-import { INote } from "utils/interfaces/note";
+import { INote } from "../utils/interfaces/note";
+import { NoteContext } from "utils/context";
 
 const ButtonDetail = ({
-  setHideScreen,
+  setHideDetailsScreen,
   currentNote,
-  setCurrentNote,
 }: {
-  setHideScreen: any;
+  setHideDetailsScreen: any;
   currentNote: INote;
-  setCurrentNote: any;
 }) => {
+  const { setCurrentNote } = useContext(NoteContext);
   const handlePress = () => {
-    setHideScreen(true);
+    setHideDetailsScreen(true);
     setCurrentNote(currentNote);
   };
   return (
