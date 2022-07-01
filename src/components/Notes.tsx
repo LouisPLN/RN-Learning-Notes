@@ -36,7 +36,7 @@ const Notes = ({
 
   return (
     <View style={styles.notesContainer}>
-      {notesList?.reverse().map((note: INote, index: React.Key) => {
+      {notesList?.map((note: INote, index: React.Key) => {
         return (
           <View key={index} style={styles.note}>
             <View

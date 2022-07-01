@@ -9,7 +9,7 @@ import Button from "./Button";
 
 // style
 import useStyles from "../utils/DefaultStyles";
-import { INote } from "utils/interfaces/note";
+import { INote } from "../utils/interfaces/note";
 import { postNote } from "../services/noteApi";
 import { LoginContext } from "../utils/context";
 

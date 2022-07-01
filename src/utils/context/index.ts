@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { INote } from "utils/interfaces/note";
+import { INote } from "../interfaces/note";
 
 export const NoteContext = createContext(
   {} as {

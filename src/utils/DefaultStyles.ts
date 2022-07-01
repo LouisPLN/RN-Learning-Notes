@@ -4,13 +4,12 @@ import { randomColorTheme } from "./RandomColor";
 
 const useStyles = () => {
   const styles = StyleSheet.create({
-
-    all : {
+    all: {
       display: "flex",
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "flex-start",
-      flex:1,
+      flex: 1,
       backgroundColor: "#101010",
     },
 
@@ -19,7 +18,7 @@ const useStyles = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      width: '95%',
+      width: "95%",
       paddingVertical: 20,
     },
 
@@ -28,7 +27,7 @@ const useStyles = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "flex-start",
-      width: '100%',
+      width: "100%",
       paddingVertical: 20,
       borderBottomWidth: 1,
       borderBottomColor: "#505050",
@@ -36,7 +35,7 @@ const useStyles = () => {
 
     title: {
       fontSize: 30,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       color: "#fff",
     },
 
@@ -45,26 +44,36 @@ const useStyles = () => {
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
-      width: '100%',
+      width: "100%",
       height: 60,
       marginTop: 10,
-      borderRadius: 10,
+      borderRadius: 5,
       backgroundColor: randomColorTheme(),
     },
 
     textButton: {
       fontSize: 16,
-      color: '#fff',
+      color: "#fff",
     },
 
-       // ALL NOTES SCREEN
+    // ALL NOTES SCREEN
+
+    filters: {
+      width: "100%",
+      height: 60,
+      paddingHorizontal: 14,
+      marginTop: 10,
+      borderRadius: 5,
+      color: "#fff",
+      backgroundColor: "#505050",
+    },
 
     notesContainer: {
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "column-reverse",
       justifyContent: "center",
       alignItems: "center",
-      width: '100%',
+      width: "100%",
       paddingTop: 20,
       paddingBottom: 100,
     },
@@ -74,10 +83,10 @@ const useStyles = () => {
       flexDirection: "row",
       justifyContent: "flex-start",
       alignItems: "flex-start",
-      width: '100%',
+      width: "100%",
       marginVertical: 5,
       borderRadius: 5,
-      backgroundColor: '#505050'
+      backgroundColor: "#505050",
     },
 
     annexesButton: {
@@ -89,53 +98,53 @@ const useStyles = () => {
     },
 
     content: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignContent: 'flex-start',
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignContent: "flex-start",
       paddingVertical: 10,
-      width: '90%',
+      width: "90%",
       marginLeft: 10,
     },
 
     noteTitle: {
       fontSize: 18,
-      fontWeight: 'bold',
-      color: '#fff',
+      fontWeight: "bold",
+      color: "#fff",
       marginBottom: 5,
     },
 
     hr: {
-      width: '100%',
+      width: "100%",
       height: 1,
-      marginVertical:10,
-      backgroundColor: '#505050'
+      marginTop: 10,
+      backgroundColor: "#505050",
     },
 
-    tagsParent : {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
+    tagsParent: {
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
       marginBottom: 10,
     },
 
     noteTags: {
       fontSize: 14,
-      color: '#99FEFF',
+      color: "#99FEFF",
     },
 
     noteText: {
       fontSize: 16,
-      color: '#fff',
+      color: "#fff",
       marginBottom: 15,
     },
 
-    parentDetail : {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      width: '100%',
+    parentDetail: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
     },
 
     noteAuthor: {
@@ -145,7 +154,7 @@ const useStyles = () => {
 
     noteCreated: {
       fontSize: 10,
-      fontStyle: 'italic',
+      fontStyle: "italic",
       color: "#fff",
     },
 
@@ -156,55 +165,55 @@ const useStyles = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "flex-start",
-      width: '100%',
+      width: "100%",
       paddingTop: 20,
       paddingBottom: 100,
     },
 
     label: {
-      color: '#fff',
+      color: "#fff",
       fontSize: 16,
       marginTop: 10,
     },
 
     input: {
-      width: '100%',
+      width: "100%",
       height: 60,
       paddingHorizontal: 14,
       marginVertical: 10,
       borderRadius: 5,
-      color: '#fff',
-      backgroundColor: '#505050',
+      color: "#fff",
+      backgroundColor: "#505050",
     },
 
     inputText: {
-      width: '100%',
+      width: "100%",
       height: 130,
       paddingHorizontal: 14,
       paddingTop: 18,
       paddingBottom: 18,
       marginVertical: 10,
       borderRadius: 5,
-      color: '#fff',
-      backgroundColor: '#505050',
+      color: "#fff",
+      backgroundColor: "#505050",
     },
 
     // LOGIN SCREEN
 
     inputLogin: {
-      width: '100%',
+      width: "100%",
       height: 60,
       paddingHorizontal: 14,
       marginTop: 10,
       marginBottom: 20,
       borderRadius: 5,
-      color: '#fff',
-      backgroundColor: '#505050',
+      color: "#fff",
+      backgroundColor: "#505050",
     },
 
     textLogin: {
       marginVertical: 20,
-      textAlign: 'center',
+      textAlign: "center",
       color: "#fff",
       fontSize: 16,
     },
@@ -216,7 +225,7 @@ const useStyles = () => {
       flexDirection: "row",
       justifyContent: "flex-start",
       alignItems: "center",
-      width: '100%',
+      width: "100%",
       paddingVertical: 20,
       borderBottomWidth: 1,
       borderBottomColor: "#505050",
@@ -234,12 +243,12 @@ const useStyles = () => {
       flexDirection: "row",
       justifyContent: "flex-start",
       alignContent: "center",
-      width: '100%',
+      width: "100%",
       marginTop: 20,
       marginBottom: 100,
       paddingRight: 10,
       borderRadius: 5,
-      backgroundColor: '#505050',
+      backgroundColor: "#505050",
     },
 
     noteDetailParent: {
@@ -247,49 +256,49 @@ const useStyles = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignContent: "space-between",
-      width: '95%',
+      width: "95%",
       marginLeft: 10,
       paddingVertical: 20,
     },
 
     detailImage: {
-      width: '100%',
+      width: "100%",
     },
 
     detailTitle: {
       marginBottom: 20,
       fontSize: 30,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       textAlign: "center",
-      color: '#fff',
+      color: "#fff",
     },
 
     detailTags: {
       marginTop: 20,
       fontSize: 18,
-      color: '#99FEFF',
+      color: "#99FEFF",
     },
 
     detailText: {
       marginVertical: 30,
       fontSize: 18,
       textAlign: "left",
-      color: '#fff',
+      color: "#fff",
     },
 
     detailAuthor: {
       marginTop: 20,
       fontSize: 16,
       textAlign: "left",
-      color: '#fff',
+      color: "#fff",
     },
 
     detailDate: {
       marginTop: 20,
       fontSize: 16,
       textAlign: "right",
-      fontStyle: 'italic',
-      color: '#fff',
+      fontStyle: "italic",
+      color: "#fff",
     },
   });
 

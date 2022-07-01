@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 const TabRoute = () => {
   return (
     <Tab.Navigator
-      initialRouteName="HomeScreen"
+      initialRouteName="HomeStack"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -29,8 +29,8 @@ const TabRoute = () => {
       }}
     >
       <Tab.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="HomeStack"
+        component={HomeStack}
         options={{
           tabBarIcon: () => <Entypo name="list" size={30} />,
         }}
@@ -39,16 +39,14 @@ const TabRoute = () => {
         name="NewNoteScreen"
         component={NewNoteScreen}
         options={{
-          tabBarIcon: () => <Entypo name="plus" size={30} color="black" />,
+          tabBarIcon: () => <Entypo name="plus" size={30} />,
         }}
       />
       <Tab.Screen
         name="MyNoteScreen"
         component={MyNoteScreen}
         options={{
-          tabBarIcon: () => (
-            <Ionicons name="person-sharp" size={30} color="black" />
-          ),
+          tabBarIcon: () => <Ionicons name="person-sharp" size={30} />,
         }}
       />
     </Tab.Navigator>
