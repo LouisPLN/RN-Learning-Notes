@@ -3,11 +3,11 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // components
-import { HomeScreen, DetailScreen } from "@screens";
+import { HomeScreen, DetailScreen } from "../screens";
 
 const Stack = createNativeStackNavigator();
 
-const NoteStack = () => {
+const HomeStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -36,4 +36,4 @@ const NoteStack = () => {
   );
 };
 
-export default NoteStack;
+export default HomeStack;

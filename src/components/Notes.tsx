@@ -15,7 +15,7 @@ import { getDateFormated } from "../utils/GetFormatDate";
 import { randomColorTheme } from "../utils/RandomColor";
 
 // interface
-import { INote } from "utils/interfaces/note";
+import { INote } from "../utils/interfaces/note";
 
 // screen
 import DetailsScreen from "../screens/DetailsScreen";
