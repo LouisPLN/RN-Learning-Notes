@@ -29,20 +29,18 @@ const LoginScreen = ({ setHideScreen }: { setHideScreen: any }) => {
         keyboardShouldPersistTaps="always"
       >
         <Text style={styles.textLogin}>
-          Pour pouvoir avoir accès à l'application{" "}
+          Bienvenue sur l'application{" "}
           <Text style={{ textDecorationLine: "underline", fontWeight: "bold" }}>
-            Notes
+            Notes.
           </Text>{" "}
-          de votre téléphone vous pouvez écrire un pseudo dans le champs de
-          texte ou bien cliquez sur le bouton{" "}
-          <Text style={{ textDecorationLine: "underline", fontWeight: "bold" }}>
-            Continuer
-          </Text>{" "}
-          ci-dessous.
+          Vous pourrez partager vos notes avec vos amis, le monde entier tout en
+          restant Anonyme.
         </Text>
+        <View style={styles.hr}></View>
+        <Text style={styles.label}>Pseudonyme</Text>
         <TextInput
           style={styles.inputLogin}
-          placeholder="Saisissez un pseudo"
+          placeholder="Saisissez un pseudonyme"
           placeholderTextColor="#909090"
           onChangeText={(text: string) => setUserName(text)}
         />

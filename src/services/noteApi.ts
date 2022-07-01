@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api, handleError } from "../utils/axios";
 import { INote } from "../utils/interfaces/note";
+import { LoginContext } from '../utils/context';
+
 
 /** Get All Notes
  * GET /note
@@ -45,10 +48,11 @@ const getMyStoredNotes = () => {
 };
 
 const getAllMyNotes = async () => {
+  const { userName } = useContext(LoginContext);
   try {
     const { data } = await api.get("/note");
     const result = data.filter(
-      (note: Partial<INote>) => note.author === "louis"
+      (note: Partial<INote>) => note.author === userName
     );
     const jsonValue = JSON.stringify(result);
     await AsyncStorage.setItem("@AllMyNotes", jsonValue);
@@ -142,7 +146,7 @@ const updateNoteById = async (_noteId: INote["_id"], _body: Partial<INote>) => {
 /** Delete
  * DELETE /note/:noteId
  **/
-const DeleteNoteById = async (_noteId: INote["_id"]) => {
+const deleteNoteById = async (_noteId: INote["_id"]) => {
   try {
     const { data } = await api.delete(`/note/${_noteId}`);
     return data;
@@ -155,7 +159,7 @@ const DeleteNoteById = async (_noteId: INote["_id"]) => {
 export {
   getAllNotes,
   postNote,
-  DeleteNoteById,
+  deleteNoteById,
   updateNoteById,
   getAllMyNotes,
   getStoredNotes,

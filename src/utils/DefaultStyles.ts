@@ -47,9 +47,9 @@ const useStyles = () => {
       alignItems: "center",
       width: '100%',
       height: 60,
-      marginTop: 5,
+      marginTop: 10,
       borderRadius: 10,
-      backgroundColor: randomColorTheme,
+      backgroundColor: randomColorTheme(),
     },
 
     textButton: {
@@ -80,6 +80,14 @@ const useStyles = () => {
       backgroundColor: '#505050'
     },
 
+    annexesButton: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "center",
+      width: 40,
+    },
+
     content: {
       display: 'flex',
       flexDirection: 'column',
@@ -101,7 +109,7 @@ const useStyles = () => {
       width: '100%',
       height: 1,
       marginVertical:10,
-      backgroundColor: '#808080'
+      backgroundColor: '#505050'
     },
 
     tagsParent : {
@@ -147,17 +155,23 @@ const useStyles = () => {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      alignItems: "center",
+      alignItems: "flex-start",
       width: '100%',
       paddingTop: 20,
       paddingBottom: 100,
+    },
+
+    label: {
+      color: '#fff',
+      fontSize: 16,
+      marginTop: 10,
     },
 
     input: {
       width: '100%',
       height: 60,
       paddingHorizontal: 14,
-      marginVertical: 5,
+      marginVertical: 10,
       borderRadius: 5,
       color: '#fff',
       backgroundColor: '#505050',
@@ -169,7 +183,7 @@ const useStyles = () => {
       paddingHorizontal: 14,
       paddingTop: 18,
       paddingBottom: 18,
-      marginVertical: 5,
+      marginVertical: 10,
       borderRadius: 5,
       color: '#fff',
       backgroundColor: '#505050',
@@ -181,15 +195,15 @@ const useStyles = () => {
       width: '100%',
       height: 60,
       paddingHorizontal: 14,
-      marginTop: 20,
-      marginBottom: 5,
+      marginTop: 10,
+      marginBottom: 20,
       borderRadius: 5,
       color: '#fff',
       backgroundColor: '#505050',
     },
 
     textLogin: {
-      marginTop: 20,
+      marginVertical: 20,
       textAlign: 'center',
       color: "#fff",
       fontSize: 16,
@@ -217,10 +231,25 @@ const useStyles = () => {
 
     noteDetailContainer: {
       display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignContent: "center",
+      width: '100%',
+      marginTop: 20,
+      marginBottom: 100,
+      paddingRight: 10,
+      borderRadius: 5,
+      backgroundColor: '#505050',
+    },
+
+    noteDetailParent: {
+      display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      alignContent: "flex-start",
-      width: '100%',
+      alignContent: "space-between",
+      width: '95%',
+      marginLeft: 10,
+      paddingVertical: 20,
     },
 
     detailImage: {
@@ -228,32 +257,35 @@ const useStyles = () => {
     },
 
     detailTitle: {
-      marginVertical: 20,
+      marginBottom: 20,
       fontSize: 30,
       fontWeight: 'bold',
       textAlign: "center",
       color: '#fff',
     },
 
+    detailTags: {
+      marginTop: 20,
+      fontSize: 18,
+      color: '#99FEFF',
+    },
+
     detailText: {
-      marginVertical: 20,
+      marginVertical: 30,
       fontSize: 18,
       textAlign: "left",
       color: '#fff',
     },
 
-    detailTags: {
-      fontSize: 18,
-      color: '#99FEFF',
-    },
-
     detailAuthor: {
+      marginTop: 20,
       fontSize: 16,
       textAlign: "left",
       color: '#fff',
     },
 
     detailDate: {
+      marginTop: 20,
       fontSize: 16,
       textAlign: "right",
       fontStyle: 'italic',

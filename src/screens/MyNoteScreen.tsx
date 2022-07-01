@@ -1,5 +1,12 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import React, { useContext, useState } from "react";
+import { Feather } from "@expo/vector-icons";
 
 // components
 import useStyles from "../utils/DefaultStyles";
@@ -23,6 +30,9 @@ const MyNoteScreen = () => {
           ) : (
             <Text style={styles.title}>🔍 Détails</Text>
           )}
+          <TouchableOpacity style={{ position: "absolute", right: 0 }}>
+            <Feather name="power" size={25} color="white" />
+          </TouchableOpacity>
         </View>
         <ScrollView
           style={{ width: "100%" }}
